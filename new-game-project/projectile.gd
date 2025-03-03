@@ -9,15 +9,15 @@ var player_position : Vector2
 @onready var hit = $Hit
 @onready var ice = $"."
 
-@export var speed: float = 200.0  # Adjust speed as needed
+@export var speed: float = 10  # Adjust speed as needed
 var target_position: Vector2
 
 var moving = false
 var direction = 0
-
+var move_towards : Vector2 = Vector2.ZERO
 func _ready():
-	ice.position = target_position
-	print(player_position)
+	
+	
 	start.visible = false
 	run.visible = false
 	hit.visible = false
@@ -53,7 +53,10 @@ func hit_anim():
 	moving = false
 	anim.play("hit")
 
-func _process(delta):
+func _physics_process(delta):
+	if moving:
+		ice.position.x += direction*10
+		
 	#if moving:ice.position.x += direction*10
 	pass
 

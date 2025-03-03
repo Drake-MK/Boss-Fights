@@ -23,7 +23,7 @@ func  _process(delta):pass
 func _on_detect_player_body_entered(body):
 	pass # Replace with function body.
 	if body.name == 'player':
-		spawn_ice(body.position)
+		phase_1()
 		print("shoot = true")
 		#shoot = true
 		
@@ -48,7 +48,22 @@ func right_ice():
 	projectile.position = blue_maze.position + Vector2(100, 0)
 	projectile.direction = 1
 	get_tree().current_scene.add_child(projectile)
-	
+'''	
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
 		spawn_ice(position)  # Fires projectile when mouse button is clicked
+'''
+
+func phase_1():
+	var num = randi_range(5,10)
+	var times = randi_range(4, 10)
+	print(num,' ',times)
+	for i in range(0,times):
+		for j in range(0,num):
+			oshoot()
+			
+			
+			await get_tree().create_timer(0.1).timeout
+		var t_break = randi_range(0.999999,3.9999999)
+		await get_tree().create_timer(t_break).timeout
+	
