@@ -15,7 +15,7 @@ var target_position: Vector2
 var moving = false
 var direction = 0
 
-func _ready()
+func _ready():
 	ice.position = target_position
 	print(player_position)
 	start.visible = false
