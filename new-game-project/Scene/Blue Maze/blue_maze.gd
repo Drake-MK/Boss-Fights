@@ -4,8 +4,10 @@ extends CharacterBody2D
 @onready var ice_2 = preload("res://Scene/Maze/ice_2.tscn")
 @onready var blue_maze = $"."
 
+@onready var bar = $"Health Bar/Bar"
 
 var shoot = false
+
 '''
 var left = blue_maze.position - Vector2(10, 0)  # Move 10 units left
 var right = blue_maze.position + Vector2(10, 0)  # Move 10 units right
@@ -13,6 +15,12 @@ var right = blue_maze.position + Vector2(10, 0)  # Move 10 units right
 '''
 func _ready():
 	shoot = false
+	if bar:
+		bar.health_zero.connect(_on_health_zero)
+
+func _on_health_zero():
+	print("Health is zero! Game over!")
+	
 func  _process(delta):pass
 '''
 	if shoot:
@@ -22,11 +30,10 @@ func  _process(delta):pass
 		get_tree().current_scene.add_child(projectile)  # Adds projectile to scene
 '''
 func _on_detect_player_body_entered(body):
-	pass # Replace with function body.
 	if body.name == 'player':
 		phase_1()
-		print("shoot = true")
-		#shoot = true
+func _on_detect_player_body_exited(body):
+	pass # Replace with function body.
 		
 
 func oshoot():
@@ -98,9 +105,8 @@ func phase_2():
 		down_ice_2(n)
 		n+=200
 func _input(event):
+	pass
 
-	if event is InputEventMouseButton and event.pressed:
-		var n = 100
-		for i in range(1,4):
-			down_ice_2(n)
-			n+=200
+
+func _on_hit_box_body_entered(body):
+	pass

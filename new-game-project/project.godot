@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 projectile_left="will spawn projectile on left direction"
 projectile_right="spwan in right"
+player_projectile=""
 
 [layer_names]
 

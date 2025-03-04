@@ -7,7 +7,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_s0fyt"]
 size = Vector2(100, 100)
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["player_projectile"]]
 collision_layer = 2
 script = ExtResource("1_dd5e7")
 
