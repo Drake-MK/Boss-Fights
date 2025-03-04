@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://d18ibnpprevj7"]
+[gd_scene load_steps=13 format=3 uid="uid://dx7wyfv36ub8v"]
 
-[ext_resource type="Texture2D" uid="uid://bnl87nss0tpyj" path="res://Assets/Ice Effect 01/Ice Effect 01/Ice VFX 1/Ice VFX 1 Start.png" id="1_8y23y"]
-[ext_resource type="Script" path="res://ice.gd" id="1_sjjy0"]
-[ext_resource type="Texture2D" uid="uid://dbcnph31e58o6" path="res://Assets/Ice Effect 01/Ice Effect 01/Ice VFX 1/IceVFX 1 Repeatable.png" id="2_qli4q"]
-[ext_resource type="Texture2D" uid="uid://c10pnmwhcl6p1" path="res://Assets/Ice Effect 01/Ice Effect 01/Ice VFX 1/Ice VFX 1 Hit.png" id="3_47qc7"]
+[ext_resource type="Script" path="res://ice_2.gd" id="1_l6oxd"]
+[ext_resource type="Texture2D" uid="uid://cke1gtpw8mbbi" path="res://Assets/Ice Effect 01/Ice Effect 01/Ice VFX 2/Ice VFX 2 Start.png" id="2_w1n0k"]
+[ext_resource type="Texture2D" uid="uid://ris0xa7ngn4y" path="res://Assets/Ice Effect 01/Ice Effect 01/Ice VFX 2/Ice VFX 2 Active.png" id="3_inbdv"]
+[ext_resource type="Texture2D" uid="uid://m2fjyn01ed8s" path="res://Assets/Ice Effect 01/Ice Effect 01/Ice VFX 2/Ice VFX 2 Ending.png" id="4_1adtf"]
 
 [sub_resource type="Animation" id="Animation_1jo07"]
 length = 0.001
@@ -58,8 +58,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_hypmg"]
 resource_name = "hit"
-length = 0.35
-loop_mode = 1
+length = 0.9
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -68,10 +67,10 @@ tracks/0/path = NodePath("Hit:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -80,7 +79,7 @@ tracks/1/path = NodePath("Hit:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.85),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -92,7 +91,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.85),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -102,8 +101,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_0g3eg"]
 resource_name = "move"
-length = 0.45
-loop_mode = 1
+length = 0.4
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -112,15 +110,15 @@ tracks/0/path = NodePath("run:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
 [sub_resource type="Animation" id="Animation_gnbra"]
 resource_name = "start"
-length = 0.4
+length = 2.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -129,10 +127,10 @@ tracks/0/path = NodePath("start:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -141,7 +139,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.7),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -164,16 +162,18 @@ size = Vector2(13, 7)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2pua5"]
 
-[node name="ice" type="CharacterBody2D"]
+[node name="ice_2" type="CharacterBody2D"]
 z_index = 6
 scale = Vector2(1.71272, 1.71272)
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("1_sjjy0")
+script = ExtResource("1_l6oxd")
 
 [node name="start" type="Sprite2D" parent="."]
-texture = ExtResource("1_8y23y")
-hframes = 3
+visible = false
+position = Vector2(0, -15.7644)
+texture = ExtResource("2_w1n0k")
+hframes = 9
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -181,16 +181,19 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-7.5, 0.5)
+position = Vector2(0.583866, 0)
 shape = SubResource("RectangleShape2D_yt3i7")
 
 [node name="run" type="Sprite2D" parent="."]
-texture = ExtResource("2_qli4q")
-hframes = 10
+visible = false
+position = Vector2(0, -15.7644)
+texture = ExtResource("3_inbdv")
+hframes = 8
 
 [node name="Hit" type="Sprite2D" parent="."]
-texture = ExtResource("3_47qc7")
-hframes = 7
+position = Vector2(0, -16.9321)
+texture = ExtResource("4_1adtf")
+hframes = 18
 
 [node name="impact" type="Area2D" parent="."]
 collision_layer = 8
@@ -201,7 +204,7 @@ shape = SubResource("CircleShape2D_88okv")
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("CircleShape2D_2pua5")
