@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var ice = preload("res://Scene/Maze/ice.tscn")
 @onready var ice_2 = preload("res://Scene/Maze/ice_2.tscn")
 @onready var blue_maze = $"."
+@onready var anim = $AnimationPlayer
+
 
 @onready var bar = $"Health Bar/Bar"
 
@@ -14,13 +16,14 @@ var right = blue_maze.position + Vector2(10, 0)  # Move 10 units right
 
 '''
 func _ready():
+	anim.play("idle")
 	shoot = false
 	if bar:
 		bar.health_zero.connect(_on_health_zero)
 
 func _on_health_zero():
 	print("Health is zero! Game over!")
-	
+	anim.play("dead")
 func  _process(delta):pass
 '''
 	if shoot:
@@ -105,8 +108,4 @@ func phase_2():
 		down_ice_2(n)
 		n+=200
 func _input(event):
-	pass
-
-
-func _on_hit_box_body_entered(body):
 	pass
