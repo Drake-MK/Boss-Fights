@@ -2,7 +2,6 @@ extends Node
 
 var player_position : Vector2
 @onready var anim = $AnimationPlayer
-
 @export var lifetime := 3.0
 
 @onready var start = $start
@@ -33,7 +32,6 @@ func start_anim():
 	hit.visible = false
 	anim.play("start")
 	moving = false
-	
 func run_anim():
 	moving = true
 	if direction == -1:
@@ -43,7 +41,6 @@ func run_anim():
 	run.visible = true
 	hit.visible = false
 	anim.play("move")
-	
 func hit_anim():
 	moving = false
 	if direction == -1:
@@ -54,11 +51,11 @@ func hit_anim():
 	hit.visible = true
 	moving = false
 	anim.play("hit")
-	
+
 func _physics_process(delta):
 	if moving:
-		ice.position.x += direction*10
-
+		ice.position.y += 10
+		
 
 func _on_hitbox_body_entered(body):
 	hit_anim()

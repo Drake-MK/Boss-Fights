@@ -33,7 +33,8 @@ func  _process(delta):pass
 		get_tree().current_scene.add_child(projectile)  # Adds projectile to scene
 '''
 func _on_detect_player_body_entered(body):
-	if body.name == 'player':
+	
+	if body.is_in_group('player'):
 		phase_1()
 func _on_detect_player_body_exited(body):
 	pass # Replace with function body.
@@ -107,5 +108,6 @@ func phase_2():
 	for i in range(1,4):
 		down_ice_2(n)
 		n+=200
+	phase_1()
 func _input(event):
 	pass
