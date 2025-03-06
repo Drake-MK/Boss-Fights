@@ -1,0 +1,7 @@
+if !is_on_floor() && sword_count < 1:
+		sword_count += 1
+		anim.play("swing_1")
+	if !is_on_floor() && sword_count < 2:
+		anim.play("swing_2")
+	if is_on_floor() : 
+		sword_count = 0

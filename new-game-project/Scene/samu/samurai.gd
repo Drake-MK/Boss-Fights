@@ -9,7 +9,9 @@ extends CharacterBody2D
 
 const JUMP_VELOCITY = -220.0
 const dash_velocity = 400
+
 var jump_count =  0
+var sword_count =  0
 var input
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -17,6 +19,7 @@ var current_state = state.MOVE
 enum state {MOVE,SWORD,DEAD}
 
 func _ready():
+	sword_count = 0
 	current_state = state.MOVE
 func _physics_process(delta):
 	match current_state:
@@ -59,7 +62,7 @@ func moving(delta):
 		jump_count += 1
 		velocity.y = JUMP_VELOCITY*4
 		
-	if Input.is_action_just_pressed("sword"):
+	if Input.is_action_just_pressed("sword") && sword_count < 3:
 		current_state = state.SWORD
  
 	add_gravity(delta)
@@ -70,6 +73,7 @@ func add_gravity(delta):
 		velocity.y += gravity *delta *3
 
 func sword_attack(delta):
+
 	anim.play("swing_1")
 	input_movement(delta)
 
@@ -86,6 +90,8 @@ func input_movement(delta):
 			sword.position.x = -18.385
 	if input == 0:
 		velocity.x = 0
-		
+	add_gravity(delta)
+	move_and_slide()
+	
 func reset_state():
 	current_state = state.MOVE
