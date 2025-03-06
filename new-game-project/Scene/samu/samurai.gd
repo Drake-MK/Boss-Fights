@@ -17,8 +17,9 @@ func _physics_process(delta):
 	moving(delta)
 func moving(delta):
 	input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	if input != 0 and is_on_floor():
-		anim.play("run")
+	if input != 0 :
+		if is_on_floor():
+			anim.play("run")
 		if input > 0 :
 			player.flip_h = false
 			velocity.x += SPEED*delta
@@ -27,12 +28,18 @@ func moving(delta):
 			player.flip_h = true
 			velocity.x -= SPEED*delta
 			velocity.x = clamp(-SPEED,100,-SPEED)
+
 	if input == 0:
 		velocity.x = 0
-		anim.play("idle")
-	
+		if is_on_floor():
+			anim.play("idle")
+		if !is_on_floor():
+			anim.play("jump_1")
 	if !is_on_floor():
-		anim.play("jump_1")
+		if jump_count < 1:
+			anim.play("jump_1")
+		if jump_count>1:
+			anim.play("jump_2")
 	if is_on_floor():
 		jump_count = 0
 	if Input.is_action_just_pressed("jump") && is_on_floor() && jump_count < 1 : 
@@ -41,6 +48,7 @@ func moving(delta):
 	if Input.is_action_just_pressed("jump") && !is_on_floor() && jump_count < max_jump:
 		jump_count += 1
 		velocity.y = JUMP_VELOCITY*4
+		
 		
  
 	add_gravity(delta)
