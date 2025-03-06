@@ -10,6 +10,9 @@ func _ready():
 func _on_hit_box_body_entered(body):
 	if body.is_in_group("player_projectile"):
 		bar.value-=10
+func _on_hit_box_area_entered(area):
+	if area.is_in_group("player_projectile"):
+		bar.value-=10
 		
 func _process(delta):
 	death()
@@ -19,5 +22,3 @@ func death():
 		bar.queue_free()
 		health_zero.emit()
 		set_process(false)
-
-		

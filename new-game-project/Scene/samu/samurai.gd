@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var anim = $AnimationPlayer
 @onready var player = $Sprite2D
+@onready var sword = $sword
 
 @export var SPEED = 300.0
 @export var max_jump = 2
@@ -12,9 +13,17 @@ var jump_count =  0
 var input
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var current_state = state.MOVE
+enum state {MOVE,SWORD,DEAD}
 
+func _ready():
+	current_state = state.MOVE
 func _physics_process(delta):
-	moving(delta)
+	match current_state:
+		state.MOVE :
+			moving(delta)
+		state.SWORD:
+			sword_attack(delta)
 func moving(delta):
 	input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	if input != 0 :
@@ -24,11 +33,12 @@ func moving(delta):
 			player.flip_h = false
 			velocity.x += SPEED*delta
 			velocity.x = clamp(SPEED,100,SPEED)
+			sword.position.x = 18.385
 		if input < 0 :
 			player.flip_h = true
 			velocity.x -= SPEED*delta
 			velocity.x = clamp(-SPEED,100,-SPEED)
-
+			sword.position.x = -18.385
 	if input == 0:
 		velocity.x = 0
 		if is_on_floor():
@@ -49,7 +59,8 @@ func moving(delta):
 		jump_count += 1
 		velocity.y = JUMP_VELOCITY*4
 		
-		
+	if Input.is_action_just_pressed("sword"):
+		current_state = state.SWORD
  
 	add_gravity(delta)
 	move_and_slide()	
@@ -57,3 +68,24 @@ func moving(delta):
 func add_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity *delta *3
+
+func sword_attack(delta):
+	anim.play("swing_1")
+	input_movement(delta)
+
+func input_movement(delta):
+	input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	if input != 0 :
+		if input > 0 :
+			velocity.x += SPEED*delta
+			velocity.x = clamp(SPEED,100,SPEED)
+			sword.position.x = 18.385
+		if input < 0 :
+			velocity.x -= SPEED*delta
+			velocity.x = clamp(-SPEED,100,-SPEED)
+			sword.position.x = -18.385
+	if input == 0:
+		velocity.x = 0
+		
+func reset_state():
+	current_state = state.MOVE
