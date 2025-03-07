@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l3j16v37qjv6"
-path="res://.godot/imported/Wind Projectile.png-3f405a8321d88a132e85d312a946cbc4.ctex"
+uid="uid://o2muhn1wg0c6"
+path="res://.godot/imported/Take Hit - white silhouette.png-37973f1fb13ae1b103fe7ae5428f1a8f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Wind Effect 01/Wind Effect 01/Wind Projectile.png"
-dest_files=["res://.godot/imported/Wind Projectile.png-3f405a8321d88a132e85d312a946cbc4.ctex"]
+source_file="res://Assets/Medieval King Pack 2/Sprites/Take Hit - white silhouette.png"
+dest_files=["res://.godot/imported/Take Hit - white silhouette.png-37973f1fb13ae1b103fe7ae5428f1a8f.ctex"]
 
 [params]
 

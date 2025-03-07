@@ -10,6 +10,7 @@ extends CharacterBody2D
 const JUMP_VELOCITY = -220.0
 const dash_velocity = 400
 
+var dashing = false
 var jump_count =  0
 var sword_count =  0
 var input
@@ -22,6 +23,7 @@ func _ready():
 	sword_count = 0
 	current_state = state.MOVE
 func _physics_process(delta):
+	dash(delta)
 	match current_state:
 		state.MOVE :
 			moving(delta)
@@ -35,13 +37,26 @@ func moving(delta):
 		if input > 0 :
 			player.flip_h = false
 			velocity.x += SPEED*delta
-			velocity.x = clamp(SPEED,100,SPEED)
-			sword.position.x = 18.385
+			if dashing : 
+				velocity.x += SPEED*delta
+				velocity.x = clamp(SPEED,100,SPEED) * 2
+				sword.position.x = 18.385
+				dashing = false
+			else : 
+				velocity.x += SPEED*delta
+				velocity.x = clamp(SPEED,100,SPEED)
+				sword.position.x = 18.385
 		if input < 0 :
 			player.flip_h = true
-			velocity.x -= SPEED*delta
-			velocity.x = clamp(-SPEED,100,-SPEED)
-			sword.position.x = -18.385
+			if dashing :
+				velocity.x -= SPEED*delta
+				velocity.x = clamp(-SPEED,100,-SPEED)  * 2 
+				sword.position.x = -18.385
+				dashing = false
+			else : 
+				velocity.x -= SPEED*delta
+				velocity.x = clamp(-SPEED,100,-SPEED) 
+				sword.position.x = -18.385
 	if input == 0:
 		velocity.x = 0
 		if is_on_floor():
@@ -64,7 +79,7 @@ func moving(delta):
 		
 	if Input.is_action_just_pressed("sword") && sword_count < 3:
 		current_state = state.SWORD
- 
+
 	add_gravity(delta)
 	move_and_slide()	
 
@@ -92,6 +107,7 @@ func input_movement(delta):
 		velocity.x = 0
 	add_gravity(delta)
 	move_and_slide()
-	
+func dash(delta):
+	dashing = true
 func reset_state():
 	current_state = state.MOVE
