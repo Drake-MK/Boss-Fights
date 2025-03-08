@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmu2po6eox22a"]
+
+[ext_resource type="Script" path="res://Splash_screens/1/splash_screen_1.gd" id="1_4hos6"]
+[ext_resource type="Texture2D" uid="uid://dv40v16tk2v0g" path="res://Assets/Screen/JOIN OUR TEAM.png" id="1_4nrj2"]
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_fld3y"]
+
+[sub_resource type="Animation" id="Animation_ridl8"]
+resource_name = "fade_in"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Splash_screen_1:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.13333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.83333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fade_out"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_e8ha6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Splash_screen_1:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w30up"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Splash_screen_1:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.966667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"load"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yj2u6"]
+_data = {
+"RESET": SubResource("Animation_e8ha6"),
+"fade_in": SubResource("Animation_ridl8"),
+"fade_out": SubResource("Animation_w30up")
+}
+
+[node name="Splash_screen_1" type="Node2D"]
+script = ExtResource("1_4hos6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -1556.0
+offset_top = -1664.0
+offset_right = -1516.0
+offset_bottom = -1624.0
+scale = Vector2(83.5638, 83.5638)
+texture = SubResource("Texture2DRD_fld3y")
+
+[node name="Splash_screen_1" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(20, 56)
+texture = ExtResource("1_4nrj2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(-2, -2)
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yj2u6")
+}
