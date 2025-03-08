@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p583b6dyk2j0"
-path="res://.godot/imported/01.png-638f5dd814143609074c8b6c760647d4.ctex"
+uid="uid://cag3o41hhxed5"
+path="res://.godot/imported/587.png-cf26e3b8adb2963f08ad058663de7d40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/01.png"
-dest_files=["res://.godot/imported/01.png-638f5dd814143609074c8b6c760647d4.ctex"]
+source_file="res://Assets/Wind Effect 01/587.png"
+dest_files=["res://.godot/imported/587.png-cf26e3b8adb2963f08ad058663de7d40.ctex"]
 
 [params]
 

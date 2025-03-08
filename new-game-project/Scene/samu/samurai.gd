@@ -1,4 +1,5 @@
 extends CharacterBody2D
+@onready var body = $"."
 
 @onready var anim = $AnimationPlayer
 @onready var player = $Sprite2D
@@ -20,10 +21,12 @@ var current_state = state.MOVE
 enum state {MOVE,SWORD,DEAD}
 
 func _ready():
+	dashing  = false
 	sword_count = 0
+	$sword/CollisionShape2D.disabled = true
 	current_state = state.MOVE
+	
 func _physics_process(delta):
-	dash(delta)
 	match current_state:
 		state.MOVE :
 			moving(delta)
@@ -31,32 +34,23 @@ func _physics_process(delta):
 			sword_attack(delta)
 func moving(delta):
 	input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+
 	if input != 0 :
 		if is_on_floor():
 			anim.play("run")
 		if input > 0 :
 			player.flip_h = false
 			velocity.x += SPEED*delta
-			if dashing : 
-				velocity.x += SPEED*delta
-				velocity.x = clamp(SPEED,100,SPEED) * 2
-				sword.position.x = 18.385
-				dashing = false
-			else : 
-				velocity.x += SPEED*delta
-				velocity.x = clamp(SPEED,100,SPEED)
-				sword.position.x = 18.385
+			velocity.x = clamp(SPEED,100,SPEED)
+			sword.position.x = 18.385
 		if input < 0 :
 			player.flip_h = true
-			if dashing :
-				velocity.x -= SPEED*delta
-				velocity.x = clamp(-SPEED,100,-SPEED)  * 2 
-				sword.position.x = -18.385
-				dashing = false
-			else : 
-				velocity.x -= SPEED*delta
-				velocity.x = clamp(-SPEED,100,-SPEED) 
-				sword.position.x = -18.385
+			
+			velocity.x -= SPEED*delta
+			velocity.x = clamp(-SPEED,100,-SPEED)
+			sword.position.x = -18.385
+
+			
 	if input == 0:
 		velocity.x = 0
 		if is_on_floor():
@@ -79,7 +73,7 @@ func moving(delta):
 		
 	if Input.is_action_just_pressed("sword") && sword_count < 3:
 		current_state = state.SWORD
-
+	dashfnc()
 	add_gravity(delta)
 	move_and_slide()	
 
@@ -107,7 +101,20 @@ func input_movement(delta):
 		velocity.x = 0
 	add_gravity(delta)
 	move_and_slide()
-func dash(delta):
-	dashing = true
+
+func dashfnc():
+	if Input.is_action_just_pressed("dash"):
+		dashing = true
 func reset_state():
 	current_state = state.MOVE
+
+func _process(delta):
+	if dashing:
+		if player.flip_h:
+			anim.play('dash')
+			body.position.x -= 100
+			dashing = false
+		else : 
+			anim.play('dash')
+			body.position.x += 100
+			dashing = false

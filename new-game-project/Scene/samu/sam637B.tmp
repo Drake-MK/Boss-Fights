@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://3p0gfal508l"]
+[gd_scene load_steps=16 format=3 uid="uid://3p0gfal508l"]
 
 [ext_resource type="Texture2D" uid="uid://d05r4k18rd8c7" path="res://Assets/DarkSamuraiAssets/DarkSamurai (64x64).png" id="1_krrni"]
 [ext_resource type="Script" path="res://Scene/samu/samurai.gd" id="1_kxebs"]
@@ -15,7 +15,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [0]
 }
 tracks/1/type = "value"
@@ -44,7 +44,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 96]
 }
 
@@ -61,7 +61,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [84, 85, 84, 85, 84]
 }
 
@@ -79,7 +79,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
@@ -97,7 +97,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [70, 71, 72, 73]
 }
 
@@ -115,7 +115,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [56, 57, 58, 59]
 }
 
@@ -133,7 +133,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [14, 15, 16, 17, 18, 19, 20, 21]
 }
 
@@ -150,7 +150,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [42, 43, 44, 28]
 }
 tracks/1/type = "method"
@@ -193,44 +193,13 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [28, 29, 30, 31, 28]
-}
-
-[sub_resource type="Animation" id="Animation_3it8h"]
-resource_name = "dash"
-length = 0.42
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.0666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [85, 91]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.0666667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"reset_state"
-}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w1p8s"]
 _data = {
 "RESET": SubResource("Animation_eqtpu"),
-"dash": SubResource("Animation_3it8h"),
 "dead": SubResource("Animation_ylb0k"),
 "hit": SubResource("Animation_pgfku"),
 "idle": SubResource("Animation_7tvgx"),
