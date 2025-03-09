@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cof1bq4fyhstp"
+path="res://.godot/imported/When the Stars Begged for Mercy.....mp3-f832002f018c6812987b0d123edb74a8.mp3str"
+
+[deps]
+
+source_file="res://star_screen/When the Stars Begged for Mercy.....mp3"
+dest_files=["res://.godot/imported/When the Stars Begged for Mercy.....mp3-f832002f018c6812987b0d123edb74a8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
