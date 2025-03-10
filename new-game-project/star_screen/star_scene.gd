@@ -2,7 +2,8 @@ extends Node2D
 
 @onready var anim = $anim
 var load  = preload("res://Scene/Main/main.tscn")
-@onready var lab = $Label/lab
+@onready var lab = $press_enter_to_sontinue/lab
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

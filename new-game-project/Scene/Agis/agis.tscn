@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://biln2cehfthas"]
+
+[ext_resource type="Texture2D" uid="uid://xwauvejwannr" path="res://Assets/Agis/Agis.png" id="1_h5foq"]
+
+[sub_resource type="Animation" id="Animation_huahp"]
+resource_name = "idle"
+length = 1.05
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_k823x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m32aa"]
+_data = {
+"RESET": SubResource("Animation_k823x"),
+"idle": SubResource("Animation_huahp")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ljnv"]
+radius = 26.0
+height = 174.0
+
+[node name="Agis" type="CharacterBody2D"]
+
+[node name="anim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_m32aa")
+}
+autoplay = "idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_h5foq")
+hframes = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 24)
+shape = SubResource("CapsuleShape2D_2ljnv")

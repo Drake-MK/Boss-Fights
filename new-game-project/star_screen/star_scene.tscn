@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bh1s40f0u1aq2"]
+[gd_scene load_steps=15 format=3 uid="uid://bh1s40f0u1aq2"]
 
 [ext_resource type="Script" path="res://star_screen/star_scene.gd" id="1_mdede"]
 [ext_resource type="Shader" path="res://star_screen/star_scene_2.gdshader" id="2_5gtv2"]
+[ext_resource type="PackedScene" uid="uid://biln2cehfthas" path="res://Scene/Agis/agis.tscn" id="3_h0lnr"]
+[ext_resource type="FontFile" uid="uid://cslkhpwtl76ms" path="res://Assets/Font/daveylikespie/daveylikespie.ttf" id="5_8g71k"]
 [ext_resource type="VideoStream" path="res://star_screen/when-the-stars-begged-for-mercy_tA6PTc59.ogv" id="5_iqspj"]
 
 [sub_resource type="Texture2DRD" id="Texture2DRD_jsuq2"]
@@ -16,6 +18,21 @@ shader_parameter/twist = 0.5
 shader_parameter/depth_effect = 2.0
 
 [sub_resource type="Texture2DRD" id="Texture2DRD_nynok"]
+
+[sub_resource type="Animation" id="Animation_md0jr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("stars_2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1175, 673)]
+}
 
 [sub_resource type="Animation" id="Animation_mkj8u"]
 resource_name = "movin_stars"
@@ -34,25 +51,37 @@ tracks/0/keys = {
 "values": [Vector2(1175, 673), Vector2(7160, 2031), Vector2(7411, 7449), Vector2(6215, 6097), Vector2(4640, 4624), Vector2(4056, 357)]
 }
 
-[sub_resource type="Animation" id="Animation_md0jr"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cg7au"]
+_data = {
+"RESET": SubResource("Animation_md0jr"),
+"movin_stars": SubResource("Animation_mkj8u")
+}
+
+[sub_resource type="Animation" id="Animation_sskxq"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("stars_2:position")
+tracks/0/path = NodePath(".:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1175, 673)]
+"values": [Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cg7au"]
-_data = {
-"RESET": SubResource("Animation_md0jr"),
-"movin_stars": SubResource("Animation_mkj8u")
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_rrkbs"]
@@ -85,33 +114,6 @@ tracks/1/keys = {
 "values": [false, true, false, true, false]
 }
 
-[sub_resource type="Animation" id="Animation_sskxq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s1seq"]
 _data = {
 "RESET": SubResource("Animation_sskxq"),
@@ -134,10 +136,10 @@ texture = SubResource("Texture2DRD_jsuq2")
 
 [node name="stars_2" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_eu2b2")
-offset_left = 1175.0
-offset_top = 673.0
-offset_right = 1215.02
-offset_bottom = 713.015
+offset_left = 1256.43
+offset_top = 691.476
+offset_right = 1296.45
+offset_bottom = 731.491
 scale = Vector2(-214.796, -214.796)
 texture = SubResource("Texture2DRD_nynok")
 
@@ -145,6 +147,10 @@ texture = SubResource("Texture2DRD_nynok")
 libraries = {
 "": SubResource("AnimationLibrary_cg7au")
 }
+
+[node name="Agis" parent="." instance=ExtResource("3_h0lnr")]
+position = Vector2(-1, -64)
+scale = Vector2(4.14101, 5.3086)
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 self_modulate = Color(0.96, 0.96, 0.96, 0.427451)
@@ -155,22 +161,24 @@ offset_bottom = 1117.0
 stream = ExtResource("5_iqspj")
 autoplay = true
 
-[node name="Label" type="Label" parent="."]
+[node name="press_enter_to_sontinue" type="Label" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -97.0
-offset_top = -11.0
-offset_right = 83.0
-offset_bottom = 12.0
+offset_left = -347.0
+offset_top = 74.0
+offset_right = -76.0
+offset_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2.5699, 2.5699)
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("5_8g71k")
 text = "Press Enter to continue"
 
-[node name="lab" type="AnimationPlayer" parent="Label"]
+[node name="lab" type="AnimationPlayer" parent="press_enter_to_sontinue"]
 libraries = {
 "": SubResource("AnimationLibrary_s1seq")
 }

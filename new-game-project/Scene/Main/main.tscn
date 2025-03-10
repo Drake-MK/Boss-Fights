@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cwwiislpcsiwk" path="res://Scene/Blue Maze/blue_maze.tscn" id="5_88v7g"]
 [ext_resource type="PackedScene" uid="uid://3p0gfal508l" path="res://Scene/samu/samurai.tscn" id="7_swmdb"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_143cx"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yux1m"]
 texture = ExtResource("1_lfq8i")
 0:0/0 = 0
 1:0/0 = 0
@@ -185,7 +185,7 @@ texture = ExtResource("1_lfq8i")
 [sub_resource type="TileSet" id="TileSet_8auvl"]
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_143cx")
+sources/0 = SubResource("TileSetAtlasSource_yux1m")
 
 [node name="Main" type="Node2D"]
 
