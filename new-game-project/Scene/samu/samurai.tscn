@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://3p0gfal508l"]
+[gd_scene load_steps=16 format=3 uid="uid://3p0gfal508l"]
 
 [ext_resource type="Texture2D" uid="uid://d05r4k18rd8c7" path="res://Assets/DarkSamuraiAssets/DarkSamurai (64x64).png" id="1_krrni"]
 [ext_resource type="Script" path="res://Scene/samu/samurai.gd" id="1_kxebs"]
-[ext_resource type="Script" path="res://state.gd" id="2_c0iat"]
 
 [sub_resource type="Animation" id="Animation_eqtpu"]
 length = 0.001
@@ -265,9 +264,6 @@ libraries = {
 "": SubResource("AnimationLibrary_w1p8s")
 }
 autoplay = "idle"
-
-[node name="State Machine" type="Node" parent="."]
-script = ExtResource("2_c0iat")
 
 [node name="Body" type="CollisionShape2D" parent="."]
 position = Vector2(0, -14)

@@ -136,10 +136,10 @@ texture = SubResource("Texture2DRD_jsuq2")
 
 [node name="stars_2" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_eu2b2")
-offset_left = 1256.43
-offset_top = 691.476
-offset_right = 1296.45
-offset_bottom = 731.491
+offset_left = 1175.0
+offset_top = 673.0
+offset_right = 1215.02
+offset_bottom = 713.015
 scale = Vector2(-214.796, -214.796)
 texture = SubResource("Texture2DRD_nynok")
 
