@@ -160,6 +160,7 @@ offset_right = 632.0
 offset_bottom = 1117.0
 stream = ExtResource("5_iqspj")
 autoplay = true
+loop = true
 
 [node name="press_enter_to_sontinue" type="Label" parent="."]
 anchors_preset = 8

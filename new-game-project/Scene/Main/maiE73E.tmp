@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://bln4bdxnml4f5"]
+[gd_scene load_steps=9 format=4 uid="uid://bln4bdxnml4f5"]
 
 [ext_resource type="Texture2D" uid="uid://bywlx3wso2scj" path="res://Scene/stringstar fields/background_0.png" id="1_01pd7"]
 [ext_resource type="Texture2D" uid="uid://cc2v6prkhshp5" path="res://Scene/stringstar fields/tileset.png" id="1_lfq8i"]
 [ext_resource type="Texture2D" uid="uid://tesrpjqdoggf" path="res://Scene/stringstar fields/background_1.png" id="2_1i2ph"]
 [ext_resource type="Texture2D" uid="uid://cpcaijcar80eq" path="res://Scene/stringstar fields/background_2.png" id="3_ttbs7"]
 [ext_resource type="PackedScene" uid="uid://cwwiislpcsiwk" path="res://Scene/Blue Maze/blue_maze.tscn" id="5_88v7g"]
-[ext_resource type="Script" path="res://Scene/Main/gm.gd" id="7_2sgl3"]
 [ext_resource type="PackedScene" uid="uid://3p0gfal508l" path="res://Scene/samu/samurai.tscn" id="7_swmdb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yux1m"]
@@ -188,8 +187,6 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_yux1m")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5yusn"]
-
 [node name="Main" type="Node2D"]
 
 [node name="Bg" type="TileMapLayer" parent="."]
@@ -219,35 +216,13 @@ tile_set = SubResource("TileSet_8auvl")
 tile_map_data = PackedByteArray("AAAXAAoAAAAAAAoAAAAYAAoAAAAAAAkAAAAZAAoAAAAAAAoAABAZAAsAAAABAAoAADAYAAsAAAAAAAkAAAAXAAsAAAABAAoAACAZAAkAAAABAAQAAAAXAAkAAAAEAAUAAAAYAAkAAAADAAgAAAAWAAoAAAAAAAgAAGAWAAsAAAAAAAgAAGAaAAoAAAAAAAgAAHAaAAsAAAAAAAgAAHAXAAwAAAADAAgAACAYAAwAAAADAAgAACAZAAwAAAADAAgAACANAAgAAAADAAMAAAANAAkAAAADAAQAAAAOAAgAAAAEAAMAAAAOAAkAAAAEAAQAAAADAAAAAAAEAAYAAEAEAP//AAAEAAYAABAEAAAAAAAAAAkAAAAEAAEAAAAJAAgAACAFAP//AAAEAAUAAAAFAAAAAAAAAAkAAAAFAAEAAAADAAgAACAGAP//AAAAAAQAAAAGAAAAAAAAAAkAAAAGAAEAAAADAAgAACAHAP//AAABAAQAAAAHAAAAAAAAAAkAAAAHAAEAAAAAAAIAAAAIAAAAAAAEAAYAAFARAP//AAAEAAYAAAAQAP//AAAEAAUAABAPAP//AAAAAAQAABAOAP//AAABAAQAABASAAAAAAAEAAYAAFARAAAAAAAAAAkAABAQAAAAAAAAAAkAABAPAAAAAAAAAAkAABAOAAAAAAAAAAkAABANAAAAAAAEAAYAAEARAAEAAAAJAAgAADAQAAEAAAADAAgAADAPAAEAAAADAAgAADAOAAEAAAACAAIAAAAJAAUAAAAFAAQAAAAKAAUAAAAGAAQAAAALAAUAAAAHAAQAAAAMAAUAAAAIAAQAAAANAAUAAAAJAAQAAAD9/woAAAAAAAoAAAD9/wsAAAAAAAoAACD+/wQAAAAAAAoAAAD+/wUAAAAAAAoAACD+/wkAAAAFAAUAAAD+/woAAAAAAAkAAAD+/wsAAAAEAAoAAAD+/wwAAAABAAMAAAD//wMAAAAGAAUAAAD//wQAAAAAAAkAAAD//wUAAAAAAAkAAAD//wYAAAAHAAoAAGD//wcAAAAGAAoAAGD//wgAAAADAAoAAGD//wkAAAACAAoAAGD//woAAAAAAAkAAAD//wsAAAAFAAoAAAD//wwAAAAEAAYAACAAAAMAAAAAAAoAAAAAAAQAAAAAAAkAAAAAAAUAAAAAAAoAADAAAAYAAAAFAAUAADAAAAcAAAAAAAgAAHAAAAgAAAAAAAgAAHAAAAkAAAAFAAUAABAAAAoAAAAAAAoAABAAAAsAAAAAAAoAADAAAAwAAAAAAAIAABABAAIAAAADAAgAAAABAAMAAAAAAAoAADABAAQAAAACAAIAAAABAAUAAAACAAMAAAABAAoAAAABAAMAAEABAAsAAAAAAAQAAFACAAMAAAAAAAQAAFD8/woAAAABAAMAAFD8/wsAAAABAAMAAFD9/wQAAAADAAgAAGD9/wUAAAAJAAcAAED9/wkAAAAEAAUAAAD9/wwAAAAAAAIAAAD9/w0AAAAAAAMAAAD+/wMAAAADAAgAAAD+/wYAAAACAAIAAAD+/wcAAAACAAMAAAD+/wgAAAACAAQAAAAAAAIAAAADAAgAAAAAAA0AAAAAAAMAABAXAAAAAAADAAgAABAWAAAAAAADAAgAABAZAAEAAAADAAgAABAYAAEAAAAGAAUAABAXAAEAAAAAAAoAABAWAAEAAAAAAAoAACAVAAEAAAAAAAQAAEAaAAIAAAADAAgAAHAZAAIAAAAAAAoAABAYAAIAAAAAAAkAABAXAAIAAAAAAAkAABAWAAIAAAAFAAUAACAaAAMAAAAJAAcAAFAZAAMAAAAAAAoAADAYAAMAAAAAAAkAABAXAAMAAAAAAAoAACAWAAMAAAAJAAcAAEAZAAQAAAAFAAUAADAYAAQAAAAHAAoAAHAXAAQAAAAFAAUAACAYAAUAAAAAAAIAAAAYAAYAAAAAAAMAAAAHAAIAAAAAAAMAAAAOAAIAAAACAAMAAAAOAAMAAAACAAQAAAABAAYAAAACAAQAAAA=")
 tile_set = SubResource("TileSet_8auvl")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 328)
+
 [node name="Blue Maze" parent="." instance=ExtResource("5_88v7g")]
 position = Vector2(604, 413)
 scale = Vector2(4.5668, 4.5668)
 
 [node name="player" parent="." groups=["player"] instance=ExtResource("7_swmdb")]
-position = Vector2(343, 648)
+position = Vector2(314, 564)
 collision_mask = 13
-
-[node name="Camera2D" type="Camera2D" parent="player"]
-position = Vector2(-0.735413, -11.399)
-scale = Vector2(0.367708, 0.367708)
-zoom = Vector2(1.155, 1.155)
-position_smoothing_enabled = true
-drag_left_margin = 0.4
-drag_top_margin = 0.4
-drag_right_margin = 0.4
-drag_bottom_margin = 0.4
-editor_draw_drag_margin = true
-
-[node name="death_fall" type="Area2D" parent="."]
-position = Vector2(82, 1138)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="death_fall"]
-shape = SubResource("WorldBoundaryShape2D_5yusn")
-debug_color = Color(0.607843, 0.521569, 0.0392157, 1)
-
-[node name="Gm" type="Node" parent="."]
-script = ExtResource("7_2sgl3")
-
-[connection signal="body_entered" from="death_fall" to="Gm" method="_on_death_fall_body_entered"]

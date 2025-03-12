@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var player = $Sprite2D
 @onready var sword = $sword
 
-@export var SPEED = 300.0
+@export var SPEED = 300.0 * 2	
 @export var max_jump = 2
 
 const JUMP_VELOCITY = -220.0
@@ -21,6 +21,7 @@ var current_state = state.MOVE
 enum state {MOVE,SWORD,DEAD}
 
 func _ready():
+	HitGlobal.enemy_died.connect(_on_hit)
 	dashing  = false
 	sword_count = 0
 	$sword/CollisionShape2D.disabled = true
@@ -118,3 +119,6 @@ func _process(delta):
 			anim.play('dash')
 			body.position.x += 100
 			dashing = false
+func _on_hit():
+	anim.play("hit")
+	print(-1)

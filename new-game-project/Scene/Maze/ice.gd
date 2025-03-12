@@ -61,4 +61,6 @@ func _physics_process(delta):
 
 
 func _on_hitbox_body_entered(body):
+	if body.name == 'player':
+		HitGlobal.enemy_died.emit()
 	hit_anim()

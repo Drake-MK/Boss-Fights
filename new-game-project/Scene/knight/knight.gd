@@ -1,43 +1,69 @@
 extends CharacterBody2D
 
-@export var speed: float = 100.0
-@export var attack_range: float = 30.0
-@export var detection_range: float = 200.0
-@export var attack_cooldown: float = 1.5
+@onready var anim = $anim
+@onready var myself = $"."  # Reference to self
+@onready var sprite = $AnimatedSprite2D
+@onready var player = $"../player"  # Remove after testing
+@onready var hurt_box = $hurt_box/CollisionShape2D
 
-var player: Node2D = null
-var can_attack: bool = true
+signal hit
+var speed = 0.5
+
+# Define states
+enum State { IDLE, MOVING, ATTACKING }
+var state = State.IDLE
 
 func _ready():
-	$AttackTimer.wait_time = attack_cooldown
-	$AttackTimer.start()
-
-func _physics_process(delta):
-	if player and player.is_inside_tree():
-		var distance = global_position.distance_to(player.global_position)
-		
-		if distance < attack_range and can_attack:
-			attack()
-		elif distance < detection_range:
-			move_towards_player(delta)
+	set_state(State.IDLE)
+	hurt_box.disabled = true
 	
-func move_towards_player(delta):
-	var direction = (player.global_position - global_position).normalized()
-	velocity = direction * speed
+func _process(delta):
+	match state:
+		State.IDLE:
+			velocity.x = 0
+			anim.play("idle")
+
+		State.MOVING:
+			anim.play("run")
+			velocity.x = (player.position.x - myself.position.x) * speed
+			sprite.flip_h = velocity.x < 0
+			if sprite.flip_h: hurt_box.position.x = -40
+			else : hurt_box.position.x = 56
+			move_and_slide()
+
+		State.ATTACKING:
+			velocity.x = 0
+			if sprite.flip_h : anim.play("attack_2")
+			else : anim.play("attack_1")
+			
+func _physics_process(delta):
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 	move_and_slide()
 
-func attack():
-	can_attack = false
-	$AttackTimer.start()
-	print("Samurai attacks!")  # Replace with actual attack animation and logic
+func _on_detect_body_entered(body):
+	if body.name == "player" or body.name == "sumarai":
+		set_state(State.MOVING)
+
+func _on_detect_body_exited(body):
+	if body.name == "player" or body.name == "sumarai":
+		set_state(State.IDLE)
+
+
 	
-func _on_AttackTimer_timeout():
-	can_attack = true
 
-func _on_Area2D_body_entered(body):
-	if body.is_in_group("Player"):
-		player = body
+func _on_attack_player_body_entered(body):
+	if body.name == "player" or body.name == "sumarai":
+		set_state(State.ATTACKING)
 
-func _on_Area2D_body_exited(body):
-	if body == player:
-		player = null
+func _on_attack_player_body_exited(body):
+	if body.name == "player" or body.name == "sumarai":
+		set_state(State.MOVING)
+
+func set_state(new_state):
+	state = new_state
+
+
+func _on_hurt_box_body_entered(body):
+	pass # Replace with function body.
+	HitGlobal.enemy_died.emit()
