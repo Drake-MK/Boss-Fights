@@ -1,5 +1,7 @@
 extends CharacterBody2D
 @onready var body = $"."
+@onready var dash_area_left = $dir_left
+@onready var dash_area_right = $dir_right
 
 @onready var anim = $AnimationPlayer
 @onready var player = $Sprite2D
@@ -35,7 +37,7 @@ func _physics_process(delta):
 			sword_attack(delta)
 func moving(delta):
 	input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-
+	
 	if input != 0 :
 		if is_on_floor():
 			anim.play("run")
@@ -46,7 +48,6 @@ func moving(delta):
 			sword.position.x = 18.385
 		if input < 0 :
 			player.flip_h = true
-			
 			velocity.x -= SPEED*delta
 			velocity.x = clamp(-SPEED,100,-SPEED)
 			sword.position.x = -18.385
@@ -110,15 +111,29 @@ func reset_state():
 	current_state = state.MOVE
 
 func _process(delta):
+	
 	if dashing:
+		var pos = 100
 		if player.flip_h:
-			anim.play('dash')
-			body.position.x -= 100
-			dashing = false
+			if dash_area_left.is_colliding():
+				pos = abs(dash_area_left.get_collision_point()) - abs(body.position)
+				anim.play('dash')
+				body.position.x += pos.x
+				dashing = false
+			else :
+				anim.play('dash')
+				body.position.x -= pos
+				dashing = false
 		else : 
-			anim.play('dash')
-			body.position.x += 100
-			dashing = false
+			if dash_area_right.is_colliding():
+				pos = abs(dash_area_right.get_collision_point()) - abs(body.position)
+				anim.play('dash')
+				body.position.x += pos.x
+				dashing = false
+			else :	
+				anim.play('dash')
+				body.position.x += pos
+				dashing = false
 func _on_hit():
 	anim.play("hit")
 	print(-1)

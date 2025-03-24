@@ -277,3 +277,16 @@ collision_mask = 13
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword"]
 shape = SubResource("RectangleShape2D_2evi2")
 debug_color = Color(1, 0.18, 0.18, 0.419608)
+
+[node name="dir_left" type="RayCast2D" parent="."]
+self_modulate = Color(0.941176, 0, 1, 1)
+position = Vector2(0, -13.9729)
+rotation = 1.5708
+collision_mask = 6
+collide_with_areas = true
+
+[node name="dir_right" type="RayCast2D" parent="."]
+position = Vector2(0, -13.6052)
+rotation = 4.71239
+collision_mask = 6
+collide_with_areas = true

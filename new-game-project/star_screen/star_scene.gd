@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var anim = $anim
-var load  = preload("res://Scene/Main/main.tscn")
+var load  = preload("res://Scene/Main/field_1.tscn")
 @onready var lab = $press_enter_to_sontinue/lab
 
 
